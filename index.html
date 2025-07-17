@@ -1,17 +1,292 @@
 <!DOCTYPE html>
-<html>
-    <body>
-        <h1>
-            Hello World!
-        </h1>
-        <p>
-            Welcome to my page! I am Abhijith Reddy Dasari. Please wait for a few days, I will improve my website and then you can find interesting articles
-            and amazing experiences of mine. <br>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Creative Technologist</title>
+    
+    <!-- 1. Tailwind CSS for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 2. Google Fonts: Source Sans 3 & Source Serif 4 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 3. Custom CSS for typography and animations */
+        
+        /* Define the font families as CSS variables for easy use */
+        :root {
+            --font-sans: 'Source Sans 3', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --font-serif: 'Source Serif 4', 'Georgia', Times, 'Times New Roman', serif;
+            /* Using the same warm color palette */
+            --color-primary: #B95A5A;
+            --color-secondary: #D9A168;
+            --color-tertiary: #6A8B9A;
+            --color-dark: #2c2a29;
+            --color-light: #F9F6F2;
+        }
+
+        /* Apply the base font to the body */
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-light); 
+            color: var(--color-dark);
+        }
+
+        /* Use the serif font for headings to create a clear hierarchy */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+        }
+        
+        /* Custom class for the "woven" thread-like animated border */
+        .thread-border {
+            position: relative;
+            padding-left: 20px;
+        }
+        .thread-border::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5%;
+            bottom: 5%;
+            width: 4px;
+            background: linear-gradient(180deg, var(--color-primary), var(--color-secondary), var(--color-tertiary));
+            border-radius: 2px;
+            opacity: 0;
+            transform: scaleY(0);
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.8s ease;
+            transform-origin: center;
+        }
+        
+        /* Animation state when the element is visible */
+        .is-visible .thread-border::before {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        
+        /* General purpose fade-in-up animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.2s;
+        }
+        
+        .is-visible .fade-in-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Add staggered delays for children of a container */
+        .is-visible .fade-in-up-staggered > * {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        
+        .is-visible .fade-in-up-staggered > *:nth-child(1) { transition-delay: 0.2s; }
+        .is-visible .fade-in-up-staggered > *:nth-child(2) { transition-delay: 0.3s; }
+        .is-visible .fade-in-up-staggered > *:nth-child(3) { transition-delay: 0.4s; }
+        .is-visible .fade-in-up-staggered > *:nth-child(4) { transition-delay: 0.5s; }
+
+        .is-visible .fade-in-up-staggered > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- CONTAINER FOR THE ENTIRE PAGE -->
+    <div class="container mx-auto px-4 md:px-8">
+
+        <!-- HEADER & NAVIGATION -->
+        <header class="flex justify-between items-center py-6">
+            <div class="text-2xl font-bold font-serif tracking-wider">
+                <a href="#" class="transition-colors duration-300 hover:text-[var(--color-primary)]">John Doe</a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-gray-600 hover:text-[var(--color-primary)] transition-colors duration-300">About</a>
+                <a href="#experience" class="text-gray-600 hover:text-[var(--color-primary)] transition-colors duration-300">Experience</a>
+                <a href="#projects" class="text-gray-600 hover:text-[var(--color-primary)] transition-colors duration-300">Projects</a>
+                <a href="#contact" class="bg-[var(--color-primary)] text-white px-5 py-2 rounded-full hover:bg-[#a13e3e] transition-all duration-300 transform hover:scale-105">Contact Me</a>
+            </nav>
+            <div class="md:hidden">
+                <!-- Mobile menu button can be added here -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </div>
+        </header>
+
+        <main>
+            <!-- HERO SECTION -->
+            <section class="text-center py-20 md:py-32">
+                <div class="animate-on-scroll">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight fade-in-up">Creative Technologist & Developer</h1>
+                    <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-600 fade-in-up" style="transition-delay: 0.3s;">
+                        I build beautiful, human-centered digital experiences at the intersection of design and technology.
+                    </p>
+                    <div class="mt-10 fade-in-up" style="transition-delay: 0.5s;">
+                        <a href="#projects" class="bg-[var(--color-dark)] text-white px-8 py-4 rounded-full hover:bg-black transition-all duration-300 transform hover:scale-105 shadow-lg">View My Work</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABOUT ME SECTION -->
+            <section id="about" class="py-20 md:py-28 animate-on-scroll">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in-up">
+                        <img src="https://placehold.co/600x700/6A8B9A/FFFFFF?text=Your+Photo" alt="A professional photo of John Doe" class="rounded-lg shadow-xl w-full h-auto">
+                    </div>
+                    <div class="thread-border">
+                        <h2 class="text-3xl md:text-4xl font-bold fade-in-up">Hi, I'm John. It's a pleasure to meet you.</h2>
+                        <p class="mt-6 text-lg text-gray-600 fade-in-up" style="transition-delay: 0.2s;">
+                            For the past 8 years, I've been turning complex problems into elegant, user-friendly solutions. My passion lies in not just making things work, but making them feel right. I believe the best technology is that which disappears, allowing the user's goals and experiences to take center stage.
+                        </p>
+                        <p class="mt-4 text-gray-600 fade-in-up" style="transition-delay: 0.3s;">
+                            Whether I'm architecting a scalable backend, designing a pixel-perfect UI, or experimenting with generative AI, my goal is always the same: to build tools that augment human capability and bring a bit of joy into the digital world.
+                        </p>
+                    </div>
+                </div>
+            </section>
             
-            Update: I have recently attended the 3D Vision Summer School in IIITH. Will be adding my experience and whatever I have learned daily!
-            
-            <br>
-            Stay Tuned!
-        </p>
-    </body>
+            <!-- EXPERIENCE SECTION -->
+            <section id="experience" class="py-20 md:py-28 animate-on-scroll">
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold fade-in-up">My Professional Journey</h2>
+                    <p class="mt-4 max-w-xl mx-auto text-gray-600 fade-in-up" style="transition-delay: 0.2s;">A timeline of my key roles and responsibilities.</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-12 fade-in-up-staggered">
+                    <!-- Experience Item 1 -->
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1.5 h-full w-0.5 bg-gray-200"></div>
+                        <div class="absolute left-[-9px] top-1.5 h-5 w-5 rounded-full bg-[var(--color-primary)]"></div>
+                        <h3 class="text-2xl font-bold">Senior Frontend Developer</h3>
+                        <p class="text-gray-500 font-medium my-1">Innovate Corp | 2020 - Present</p>
+                        <p class="text-gray-600">Leading the development of a design system and main user-facing application, improving performance by 40% and mentoring a team of 4 junior developers.</p>
+                    </div>
+                    <!-- Experience Item 2 -->
+                    <div class="relative pl-8">
+                        <div class="absolute left-0 top-1.5 h-full w-0.5 bg-gray-200"></div>
+                        <div class="absolute left-[-9px] top-1.5 h-5 w-5 rounded-full bg-[var(--color-secondary)]"></div>
+                        <h3 class="text-2xl font-bold">Full-Stack Engineer</h3>
+                        <p class="text-gray-500 font-medium my-1">Tech Solutions Inc. | 2017 - 2020</p>
+                        <p class="text-gray-600">Developed and maintained client-side and server-side applications for B2B SaaS products using React, Node.js, and PostgreSQL. Collaborated with product managers to define new features.</p>
+                    </div>
+                    <!-- Experience Item 3 -->
+                    <div class="relative pl-8">
+                        <div class="absolute left-[-9px] top-1.5 h-5 w-5 rounded-full bg-[var(--color-tertiary)]"></div>
+                        <h3 class="text-2xl font-bold">Web Developer Intern</h3>
+                        <p class="text-gray-500 font-medium my-1">Digital Starters | Summer 2016</p>
+                        <p class="text-gray-600">Assisted the development team in building and testing responsive websites for small business clients, gaining foundational experience in HTML, CSS, and JavaScript.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION (MODULAR GRID) -->
+            <section id="projects" class="py-20 md:py-28 animate-on-scroll">
+                 <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold fade-in-up">Selected Projects</h2>
+                    <p class="mt-4 max-w-xl mx-auto text-gray-600 fade-in-up" style="transition-delay: 0.2s;">Here are a few things I'm proud to have worked on.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-up-staggered">
+                    <!-- Project Card 1 -->
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/B95A5A/FFFFFF?text=Project+One" alt="Screenshot of Project One" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold">Project One Title</h3>
+                            <p class="mt-2 text-gray-600 flex-grow">A brief, compelling description of the project, what it does, and the problem it solves.</p>
+                            <div class="mt-4">
+                                <a href="#" class="text-[var(--color-primary)] font-semibold group"><span>Live Demo</span><span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5">&rarr;</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 2 -->
+                     <div class="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/D9A168/FFFFFF?text=Project+Two" alt="Screenshot of Project Two" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold">Project Two Title</h3>
+                            <p class="mt-2 text-gray-600 flex-grow">A brief, compelling description of the project, what it does, and the problem it solves.</p>
+                            <div class="mt-4">
+                                <a href="#" class="text-[var(--color-primary)] font-semibold group"><span>View on GitHub</span><span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5">&rarr;</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Card 3 -->
+                     <div class="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden flex flex-col">
+                        <img src="https://placehold.co/600x400/6A8B9A/FFFFFF?text=Project+Three" alt="Screenshot of Project Three" class="w-full h-48 object-cover">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold">Project Three Title</h3>
+                            <p class="mt-2 text-gray-600 flex-grow">A brief, compelling description of the project, what it does, and the problem it solves.</p>
+                            <div class="mt-4">
+                                <a href="#" class="text-[var(--color-primary)] font-semibold group"><span>Read Case Study</span><span class="inline-block transition-transform duration-300 group-hover:translate-x-1.5">&rarr;</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER / CONTACT SECTION -->
+    <footer id="contact" class="bg-[var(--color-dark)] text-white mt-20 py-20">
+        <div class="container mx-auto px-4 md:px-8 text-center">
+            <h2 class="text-3xl font-bold">Let's Collaborate</h2>
+            <p class="mt-4 max-w-xl mx-auto text-gray-300">
+                Have an interesting project or idea? I'm always open to new opportunities and collaborations. Feel free to reach out.
+            </p>
+            <div class="mt-8">
+                <a href="mailto:hello@johndoe.com" class="text-xl text-[var(--color-secondary)] hover:text-white transition-colors duration-300">hello@johndoe.com</a>
+            </div>
+            <div class="mt-8 flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12.013c0 4.418 2.865 8.169 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12.013C22 6.477 17.523 2 12 2z" clip-rule="evenodd" /></svg>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+                </a>
+                 <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-sm text-gray-400">
+                <p>&copy; 2025 John Doe. Built with inspiration and a lot of coffee.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 4. JavaScript for Scroll Animations -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all elements that should be animated on scroll
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            if (!animatedElements.length) return;
+
+            // The Intersection Observer API lets us know when an element
+            // enters the browser's viewport.
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // If the element is in view
+                    if (entry.isIntersecting) {
+                        // Add the 'is-visible' class to trigger our CSS animations
+                        entry.target.classList.add('is-visible');
+                        // We only want the animation to play once, so we unobserve the element
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            // Tell the observer to watch each of our animated elements
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
 </html>
